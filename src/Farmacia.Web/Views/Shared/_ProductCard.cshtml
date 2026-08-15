@@ -2,6 +2,10 @@
 
 <div class="product-card">
     <a asp-controller="Products" asp-action="Details" asp-route-slug="@Model.Slug" class="product-img-wrap d-block">
+        @if (Model.IsFeatured)
+        {
+            <span class="badge badge-featured featured-ribbon"><i class="bi bi-star-fill"></i> Destacado</span>
+        }
         <img src="@(string.IsNullOrEmpty(Model.ImageUrl) ? "https://placehold.co/400x300?text=Farmacia+Salud" : Model.ImageUrl)" alt="@Model.Name" loading="lazy" />
     </a>
     <div class="card-body p-3">

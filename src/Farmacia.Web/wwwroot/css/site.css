@@ -3,6 +3,9 @@
   --brand-primary-dark: #0a6b53;
   --brand-primary-light: #e6f6f1;
   --brand-accent: #1f6fb2;
+  --brand-yellow: #f7b500;
+  --brand-yellow-dark: #a86e00;
+  --brand-yellow-light: #fff6dc;
   --brand-danger: #d64545;
   --ink: #1b2430;
   --ink-soft: #5b6672;
@@ -109,7 +112,7 @@ a:hover {
 
 /* Hero */
 .hero {
-  background: linear-gradient(120deg, var(--brand-primary-light) 0%, #ffffff 65%);
+  background: linear-gradient(120deg, var(--brand-primary-light) 0%, #ffffff 55%, var(--brand-yellow-light) 130%);
   padding: 4rem 0;
 }
 .hero h1 {
@@ -121,16 +124,19 @@ a:hover {
 }
 
 .hero-badge {
-  background-color: #ffffff;
-  border: 1px solid var(--border);
+  background-color: var(--brand-yellow-light);
+  border: 1px solid var(--brand-yellow);
   border-radius: 999px;
   padding: 0.35rem 0.9rem;
   font-size: 0.85rem;
-  color: var(--brand-primary-dark);
+  color: var(--brand-yellow-dark);
   font-weight: 600;
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
+}
+.hero-badge .bi {
+  color: var(--brand-yellow-dark);
 }
 
 /* Category cards */
@@ -171,9 +177,16 @@ a:hover {
   transform: translateY(-3px);
 }
 .product-card .product-img-wrap {
+  position: relative;
   aspect-ratio: 4 / 3;
   background-color: var(--bg-soft);
   overflow: hidden;
+}
+.featured-ribbon {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.6rem;
+  z-index: 1;
 }
 .product-card img {
   width: 100%;
@@ -201,11 +214,30 @@ a:hover {
   color: #a12525;
   border: 1px solid #f2b8b8;
 }
+.badge-featured {
+  background-color: var(--brand-yellow);
+  color: #3d2c00;
+  font-weight: 700;
+}
 
 /* Section titles */
 .section-title {
   font-weight: 800;
   color: var(--ink);
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.6rem;
+}
+.section-title::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 56px;
+  height: 4px;
+  border-radius: 999px;
+  background-color: var(--brand-yellow);
 }
 .section-subtitle {
   color: var(--ink-soft);
@@ -218,8 +250,16 @@ a:hover {
   border-bottom: 1px solid var(--border);
 }
 .feature-item .bi {
-  font-size: 1.6rem;
-  color: var(--brand-primary);
+  font-size: 1.4rem;
+  color: var(--brand-yellow-dark);
+  background-color: var(--brand-yellow-light);
+  border: 1px solid var(--brand-yellow);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Footer */
