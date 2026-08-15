@@ -44,6 +44,11 @@
                         <i class="bi bi-envelope"></i> Mensajes
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link rounded-3 @(currentController == "Subscribers" ? "active" : "")" asp-area="Admin" asp-controller="Subscribers" asp-action="Index">
+                        <i class="bi bi-envelope-paper"></i> Suscriptores
+                    </a>
+                </li>
             </ul>
             <hr class="border-secondary" />
             <ul class="nav flex-column gap-1">

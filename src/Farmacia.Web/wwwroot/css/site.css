@@ -58,6 +58,17 @@ a:hover {
   background-color: var(--brand-primary);
   color: #fff;
 }
+.btn-brand-yellow {
+  background-color: var(--brand-yellow);
+  border-color: var(--brand-yellow);
+  color: #3d2c00;
+  font-weight: 700;
+}
+.btn-brand-yellow:hover {
+  background-color: var(--brand-yellow-dark);
+  border-color: var(--brand-yellow-dark);
+  color: #ffffff;
+}
 
 /* Top utility bar */
 .topbar {
@@ -111,9 +122,123 @@ a:hover {
 }
 
 /* Hero */
+.hero-carousel {
+  position: relative;
+}
+.hero-carousel .carousel-item {
+  transition: transform 0.6s ease-in-out;
+}
+.hero-carousel-arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 1px solid var(--border);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-primary-dark);
+  font-size: 1.1rem;
+  box-shadow: 0 4px 12px rgba(15, 40, 30, 0.12);
+}
+.hero-carousel .carousel-control-prev,
+.hero-carousel .carousel-control-next {
+  width: 4rem;
+  opacity: 1;
+}
+.hero-carousel .carousel-indicators {
+  bottom: 0.5rem;
+}
+.hero-carousel .carousel-indicators [data-bs-target] {
+  background-color: var(--brand-primary-dark);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
 .hero {
   background: linear-gradient(120deg, var(--brand-primary-light) 0%, #ffffff 55%, var(--brand-yellow-light) 130%);
   padding: 4rem 0;
+}
+.hero-alt-1 {
+  background: linear-gradient(120deg, var(--brand-yellow-light) 0%, #ffffff 55%, var(--brand-primary-light) 130%);
+}
+.hero-alt-2 {
+  background: linear-gradient(120deg, #eaf2fb 0%, #ffffff 55%, var(--brand-primary-light) 130%);
+}
+
+/* Promo banners */
+.promo-banner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  color: #ffffff;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  height: 100%;
+}
+.promo-banner:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(15, 40, 30, 0.15);
+  color: #ffffff;
+}
+.promo-banner > .bi:first-child {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+.promo-banner-title {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+.promo-banner-subtitle {
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+.promo-banner-arrow {
+  margin-left: auto;
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+.promo-banner-green {
+  background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-primary-dark) 100%);
+}
+.promo-banner-yellow {
+  background: linear-gradient(135deg, var(--brand-yellow) 0%, var(--brand-yellow-dark) 100%);
+  color: #3d2c00;
+}
+.promo-banner-yellow .promo-banner-subtitle {
+  color: #3d2c00;
+}
+.promo-banner-yellow:hover {
+  color: #3d2c00;
+}
+.promo-banner-blue {
+  background: linear-gradient(135deg, var(--brand-accent) 0%, #144a75 100%);
+}
+
+/* Info cards */
+.info-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background-color: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.25rem;
+  height: 100%;
+}
+.info-card-icon {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background-color: var(--brand-primary-light);
+  color: var(--brand-primary-dark);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
 }
 .hero h1 {
   font-weight: 800;
@@ -260,6 +385,14 @@ a:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Newsletter */
+.newsletter-section {
+  background: linear-gradient(120deg, var(--brand-primary-dark) 0%, var(--brand-primary) 100%);
+}
+.newsletter-section .form-control::placeholder {
+  color: var(--ink-soft);
 }
 
 /* Footer */

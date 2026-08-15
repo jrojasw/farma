@@ -4,28 +4,134 @@
     var categories = ViewData["Categories"] as List<Category> ?? new List<Category>();
 }
 
-<section class="hero">
-    <div class="container">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-6">
-                <span class="hero-badge mb-3"><i class="bi bi-patch-check-fill"></i> Farmacéuticos certificados</span>
-                <h1 class="display-5 mt-3 mb-3">Tu salud, nuestra prioridad</h1>
-                <p class="lead">
-                    Medicamentos, cuidado personal y equipo médico con la mejor atención.
-                    Encuentra todo lo que necesitas y recíbelo en la puerta de tu casa.
-                </p>
-                <div class="d-flex gap-3 mt-4">
-                    <a asp-controller="Products" asp-action="Index" class="btn btn-brand btn-lg">
-                        <i class="bi bi-bag-heart"></i> Ver productos
-                    </a>
-                    <a asp-controller="Contact" asp-action="Index" class="btn btn-outline-brand btn-lg">
-                        Contáctanos
-                    </a>
+<div id="heroCarousel" class="carousel slide hero-carousel" data-bs-ride="carousel" data-bs-interval="6000">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Diapositiva 1"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Diapositiva 2"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Diapositiva 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <section class="hero">
+                <div class="container">
+                    <div class="row align-items-center g-5">
+                        <div class="col-lg-6">
+                            <span class="hero-badge mb-3"><i class="bi bi-patch-check-fill"></i> Farmacéuticos certificados</span>
+                            <h1 class="display-5 mt-3 mb-3">Tu salud, nuestra prioridad</h1>
+                            <p class="lead">
+                                Medicamentos, cuidado personal y equipo médico con la mejor atención.
+                                Encuentra todo lo que necesitas y recíbelo en la puerta de tu casa.
+                            </p>
+                            <div class="d-flex gap-3 mt-4">
+                                <a asp-controller="Products" asp-action="Index" class="btn btn-brand btn-lg">
+                                    <i class="bi bi-bag-heart"></i> Ver productos
+                                </a>
+                                <a asp-controller="Contact" asp-action="Index" class="btn btn-outline-brand btn-lg">
+                                    Contáctanos
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 text-center">
+                            <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=900"
+                                 class="img-fluid rounded-4 shadow-sm" alt="Farmacia Salud" style="max-height:380px;object-fit:cover;" />
+                        </div>
+                    </div>
                 </div>
+            </section>
+        </div>
+        <div class="carousel-item">
+            <section class="hero hero-alt-1">
+                <div class="container">
+                    <div class="row align-items-center g-5">
+                        <div class="col-lg-6">
+                            <span class="hero-badge mb-3"><i class="bi bi-capsule-pill"></i> Vitaminas y Suplementos</span>
+                            <h1 class="display-5 mt-3 mb-3">Refuerza tu bienestar cada día</h1>
+                            <p class="lead">
+                                Vitaminas, minerales y suplementos nutricionales seleccionados
+                                para acompañar tu rutina de salud.
+                            </p>
+                            <div class="d-flex gap-3 mt-4">
+                                <a asp-controller="Products" asp-action="Index" asp-route-category="vitaminas-suplementos" class="btn btn-brand btn-lg">
+                                    Ver vitaminas y suplementos
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 text-center">
+                            <img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=900"
+                                 class="img-fluid rounded-4 shadow-sm" alt="Vitaminas y suplementos" style="max-height:380px;object-fit:cover;" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="carousel-item">
+            <section class="hero hero-alt-2">
+                <div class="container">
+                    <div class="row align-items-center g-5">
+                        <div class="col-lg-6">
+                            <span class="hero-badge mb-3"><i class="bi bi-truck"></i> Entrega a domicilio</span>
+                            <h1 class="display-5 mt-3 mb-3">Pide en línea, recibe en tu puerta</h1>
+                            <p class="lead">
+                                Haz tu pedido desde el catálogo y coordina la entrega directamente
+                                con nuestro equipo — sin filas ni esperas.
+                            </p>
+                            <div class="d-flex gap-3 mt-4">
+                                <a asp-controller="Products" asp-action="Index" class="btn btn-brand btn-lg">
+                                    Empezar a comprar
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 text-center">
+                            <img src="https://images.unsplash.com/photo-1616671276441-2f2c277b8bf6?w=900"
+                                 class="img-fluid rounded-4 shadow-sm" alt="Entrega a domicilio" style="max-height:380px;object-fit:cover;" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="hero-carousel-arrow"><i class="bi bi-chevron-left"></i></span>
+        <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="hero-carousel-arrow"><i class="bi bi-chevron-right"></i></span>
+        <span class="visually-hidden">Siguiente</span>
+    </button>
+</div>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <a class="promo-banner promo-banner-green text-decoration-none" asp-controller="Products" asp-action="Index" asp-route-category="medicamentos">
+                    <i class="bi bi-capsule"></i>
+                    <div>
+                        <div class="promo-banner-title">Medicamentos</div>
+                        <div class="promo-banner-subtitle">Con y sin receta, siempre en stock</div>
+                    </div>
+                    <i class="bi bi-arrow-right promo-banner-arrow"></i>
+                </a>
             </div>
-            <div class="col-lg-6 text-center">
-                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=900"
-                     class="img-fluid rounded-4 shadow-sm" alt="Farmacia Salud" style="max-height:380px;object-fit:cover;" />
+            <div class="col-md-4">
+                <a class="promo-banner promo-banner-yellow text-decoration-none" asp-controller="Products" asp-action="Index" asp-route-category="cuidado-bebe">
+                    <i class="bi bi-emoji-smile"></i>
+                    <div>
+                        <div class="promo-banner-title">Cuidado del Bebé</div>
+                        <div class="promo-banner-subtitle">Todo para la salud de los más pequeños</div>
+                    </div>
+                    <i class="bi bi-arrow-right promo-banner-arrow"></i>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a class="promo-banner promo-banner-blue text-decoration-none" asp-controller="Products" asp-action="Index" asp-route-category="equipo-medico">
+                    <i class="bi bi-heart-pulse"></i>
+                    <div>
+                        <div class="promo-banner-title">Equipo Médico</div>
+                        <div class="promo-banner-subtitle">Tensiómetros, termómetros y más</div>
+                    </div>
+                    <i class="bi bi-arrow-right promo-banner-arrow"></i>
+                </a>
             </div>
         </div>
     </div>
@@ -49,6 +155,43 @@
             <div class="col-6 col-md-3 feature-item">
                 <i class="bi bi-headset d-block mb-2"></i>
                 <div class="small fw-semibold">Asesoría farmacéutica</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="info-card">
+                    <div class="info-card-icon"><i class="bi bi-headset"></i></div>
+                    <div>
+                        <div class="fw-bold mb-1">Farmacéutico de turno</div>
+                        <div class="small text-muted mb-2">¿Tienes dudas sobre un medicamento? Llámanos.</div>
+                        <a href="tel:+15551234567" class="small fw-semibold">(555) 123-4567</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="info-card">
+                    <div class="info-card-icon"><i class="bi bi-file-earmark-medical"></i></div>
+                    <div>
+                        <div class="fw-bold mb-1">Recetas médicas</div>
+                        <div class="small text-muted mb-2">Consulta qué productos requieren receta.</div>
+                        <a asp-controller="Contact" asp-action="Index" class="small fw-semibold">Escríbenos</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="info-card">
+                    <div class="info-card-icon"><i class="bi bi-truck"></i></div>
+                    <div>
+                        <div class="fw-bold mb-1">Envío y retiro</div>
+                        <div class="small text-muted mb-2">Coordina la entrega de tu pedido al finalizar la compra.</div>
+                        <a asp-controller="Products" asp-action="Index" class="small fw-semibold">Empezar a comprar</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -93,3 +236,32 @@
         </div>
     </section>
 }
+
+<section class="newsletter-section py-5">
+    <div class="container">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-7">
+                <h2 class="h3 text-white fw-bold mb-2">Suscríbete a nuestras novedades</h2>
+                <p class="text-white-50 mb-0">
+                    Entérate de nuevos productos y avisos importantes de la farmacia — sin spam.
+                </p>
+            </div>
+            <div class="col-lg-5">
+                @if (TempData["NewsletterSuccess"] is string newsletterSuccess)
+                {
+                    <div class="alert alert-success mb-3">@newsletterSuccess</div>
+                }
+                @if (TempData["NewsletterError"] is string newsletterError)
+                {
+                    <div class="alert alert-danger mb-3">@newsletterError</div>
+                }
+                <form asp-controller="Newsletter" asp-action="Subscribe" method="post" class="d-flex gap-2">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="returnUrl" value="@Url.Action("Index", "Home")#suscribete" />
+                    <input type="email" name="email" required class="form-control form-control-lg" placeholder="tu@correo.com" aria-label="Correo electrónico" />
+                    <button type="submit" class="btn btn-brand-yellow btn-lg text-nowrap">Suscribirme</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

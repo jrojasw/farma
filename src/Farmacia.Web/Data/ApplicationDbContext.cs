@@ -16,6 +16,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<Order> Orders => Set<Order>();
     public DbSet<OrderItem> OrderItems => Set<OrderItem>();
     public DbSet<ContactMessage> ContactMessages => Set<ContactMessage>();
+    public DbSet<NewsletterSubscriber> NewsletterSubscribers => Set<NewsletterSubscriber>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -23,6 +24,10 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 
         builder.Entity<Category>()
             .HasIndex(c => c.Slug)
+            .IsUnique();
+
+        builder.Entity<NewsletterSubscriber>()
+            .HasIndex(s => s.Email)
             .IsUnique();
 
         builder.Entity<Product>()

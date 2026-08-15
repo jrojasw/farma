@@ -1,0 +1,38 @@
+@model List<NewsletterSubscriber>
+@{
+    ViewData["Title"] = "Suscriptores";
+}
+
+<div class="border rounded-4 p-3">
+    @if (!Model.Any())
+    {
+        <p class="text-muted small mb-0">Aún no hay suscriptores.</p>
+    }
+    else
+    {
+        <table class="table table-sm align-middle">
+            <thead>
+                <tr>
+                    <th>Correo</th>
+                    <th>Fecha de suscripción</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var subscriber in Model)
+                {
+                    <tr>
+                        <td>@subscriber.Email</td>
+                        <td class="text-muted small">@subscriber.CreatedAt.ToLocalTime().ToString("dd/MM/yyyy HH:mm")</td>
+                        <td class="text-end">
+                            <form asp-action="Delete" asp-route-id="@subscriber.Id" method="post" class="d-inline" onsubmit="return confirm('¿Eliminar este suscriptor?');">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
