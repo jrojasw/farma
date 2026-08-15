@@ -2,10 +2,11 @@
 bin/
 obj/
 
-## SQLite database files (generated at runtime via migrations + seed data)
+## SQLite database + data-protection keys (generated at runtime via migrations + seed data)
 **/App_Data/*.db
 **/App_Data/*.db-shm
 **/App_Data/*.db-wal
+**/App_Data/key-*.xml
 
 ## Editor / OS
 .vs/

@@ -23,6 +23,7 @@ Sitio web para una farmacia construido con **ASP.NET Core 8 MVC** (C#), **Entity
 - CRUD de productos y categorías.
 - Gestión de pedidos con cambio de estado (Pendiente, Confirmado, Entregado, Cancelado).
 - Bandeja de mensajes de contacto.
+- Cambio de contraseña del propio usuario admin.
 
 ## Cómo ejecutar el proyecto
 
@@ -44,7 +45,18 @@ La app quedará disponible en la URL que indique la consola (por defecto `http:/
 - Correo: `admin@farmaciasalud.com`
 - Contraseña: `Farmacia#2024!`
 
-**Importante:** cambia esta contraseña antes de desplegar en producción (puedes hacerlo desde el propio flujo de Identity o editando `Data/SeedData.cs` antes del primer arranque).
+**Importante:** cambia esta contraseña antes de exponer el sitio en producción. Inicia sesión y ve a **Panel → Cambiar contraseña** (`/Admin/Account/ChangePassword`) en la barra lateral.
+
+## Despliegue en Railway
+
+El repo incluye un `Dockerfile` listo para Railway:
+
+1. **New Project → Deploy from GitHub repo**, selecciona este repositorio y la rama deseada. Railway detecta el `Dockerfile` automáticamente.
+2. **Agrega un volumen persistente** montado en `/app/App_Data` (Settings → Volumes) para que la base SQLite y las claves de sesión sobrevivan a los redeploys.
+3. **Genera un dominio** en Settings → Networking → Generate Domain.
+4. Cambia la contraseña del admin apenas entres por primera vez (ver sección anterior).
+
+No se requieren variables de entorno adicionales: `ASPNETCORE_ENVIRONMENT=Production` viene fijo en el `Dockerfile` y Railway inyecta `PORT` automáticamente.
 
 ## Estructura del proyecto
 
