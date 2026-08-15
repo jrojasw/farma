@@ -1,0 +1,78 @@
+@model CheckoutViewModel
+@{
+    ViewData["Title"] = "Finalizar compra";
+}
+
+<div class="container py-5">
+    <h1 class="h3 section-title mb-4"><i class="bi bi-bag-check"></i> Finalizar compra</h1>
+
+    <div class="row g-4">
+        <div class="col-lg-7">
+            <form asp-controller="Checkout" asp-action="Index" method="post" class="border rounded-4 p-4">
+                @Html.AntiForgeryToken()
+                <div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
+
+                <div class="mb-3">
+                    <label asp-for="CustomerName" class="form-label"></label>
+                    <input asp-for="CustomerName" class="form-control" />
+                    <span asp-validation-for="CustomerName" class="text-danger small"></span>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="CustomerEmail" class="form-label"></label>
+                        <input asp-for="CustomerEmail" class="form-control" />
+                        <span asp-validation-for="CustomerEmail" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="CustomerPhone" class="form-label"></label>
+                        <input asp-for="CustomerPhone" class="form-control" />
+                        <span asp-validation-for="CustomerPhone" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Address" class="form-label"></label>
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Notes" class="form-label"></label>
+                    <textarea asp-for="Notes" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="Notes" class="text-danger small"></span>
+                </div>
+
+                <div class="alert alert-light border small">
+                    <i class="bi bi-info-circle"></i>
+                    El pago se realiza contra entrega. Nuestro equipo confirmará tu pedido por teléfono.
+                </div>
+
+                <button type="submit" class="btn btn-brand btn-lg w-100">Confirmar pedido</button>
+            </form>
+        </div>
+
+        <div class="col-lg-5">
+            <div class="order-summary p-4">
+                <h5 class="fw-bold mb-3">Tu pedido</h5>
+                <ul class="list-unstyled">
+                    @foreach (var item in Model.Items)
+                    {
+                        <li class="d-flex justify-content-between small mb-2">
+                            <span>@item.ProductName <span class="text-muted">x@item.Quantity</span></span>
+                            <span>$@item.Subtotal.ToString("0.00")</span>
+                        </li>
+                    }
+                </ul>
+                <div class="d-flex justify-content-between fs-5 fw-bold border-top pt-3 mt-3">
+                    <span>Total</span>
+                    <span>$@Model.Total.ToString("0.00")</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

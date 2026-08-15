@@ -1,0 +1,27 @@
+@model ContactMessage
+@{
+    ViewData["Title"] = Model.Subject;
+}
+
+<div class="border rounded-4 p-4" style="max-width:700px;">
+    <div class="mb-3">
+        <strong>@Model.Name</strong>
+        <span class="text-muted small"> — @Model.CreatedAt.ToLocalTime().ToString("dd/MM/yyyy HH:mm")</span>
+    </div>
+    <p class="small mb-1"><i class="bi bi-envelope"></i> <a href="mailto:@Model.Email">@Model.Email</a></p>
+    @if (!string.IsNullOrWhiteSpace(Model.Phone))
+    {
+        <p class="small mb-3"><i class="bi bi-telephone"></i> @Model.Phone</p>
+    }
+    <hr />
+    <h2 class="h6">@Model.Subject</h2>
+    <p style="white-space:pre-wrap;">@Model.Message</p>
+
+    <div class="d-flex gap-2 mt-4">
+        <a asp-action="Index" class="btn btn-outline-secondary">Volver</a>
+        <form asp-action="Delete" asp-route-id="@Model.Id" method="post" onsubmit="return confirm('¿Eliminar este mensaje?');">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-outline-danger">Eliminar</button>
+        </form>
+    </div>
+</div>

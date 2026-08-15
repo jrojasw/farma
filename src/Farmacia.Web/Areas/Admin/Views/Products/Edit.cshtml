@@ -1,0 +1,11 @@
+@model Product
+@{
+    ViewData["Title"] = "Editar producto";
+}
+
+<div class="border rounded-4 p-4" style="max-width:900px;">
+    <form asp-action="Edit" asp-route-id="@Model.Id" method="post">
+        @Html.AntiForgeryToken()
+        <partial name="_Form" model="Model" />
+    </form>
+</div>

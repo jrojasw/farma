@@ -1,0 +1,72 @@
+@model List<Product>
+@{
+    ViewData["Title"] = "Productos";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <form method="get" class="d-flex gap-2">
+        <input type="search" name="q" value="@ViewData["SearchTerm"]" class="form-control form-control-sm" placeholder="Buscar producto..." style="width:240px;" />
+        <button class="btn btn-sm btn-outline-brand" type="submit">Buscar</button>
+    </form>
+    <a asp-action="Create" class="btn btn-brand btn-sm"><i class="bi bi-plus-lg"></i> Nuevo producto</a>
+</div>
+
+<div class="border rounded-4 p-3">
+    @if (!Model.Any())
+    {
+        <p class="text-muted small mb-0">No hay productos registrados.</p>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-sm align-middle">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Nombre</th>
+                        <th>Categoría</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Estado</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src="@(string.IsNullOrEmpty(product.ImageUrl) ? "https://placehold.co/50x50" : product.ImageUrl)" style="width:40px;height:40px;object-fit:cover;border-radius:6px;" />
+                            </td>
+                            <td>@product.Name</td>
+                            <td>@product.Category?.Name</td>
+                            <td>$@product.Price.ToString("0.00")</td>
+                            <td>@product.Stock</td>
+                            <td>
+                                @if (product.IsActive)
+                                {
+                                    <span class="badge bg-success-subtle text-success-emphasis">Activo</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary-subtle text-secondary-emphasis">Inactivo</span>
+                                }
+                                @if (product.IsFeatured)
+                                {
+                                    <span class="badge bg-warning-subtle text-warning-emphasis">Destacado</span>
+                                }
+                            </td>
+                            <td class="text-end">
+                                <a asp-action="Edit" asp-route-id="@product.Id" class="btn btn-sm btn-outline-brand"><i class="bi bi-pencil"></i></a>
+                                <form asp-action="Delete" asp-route-id="@product.Id" method="post" class="d-inline" onsubmit="return confirm('¿Eliminar este producto?');">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

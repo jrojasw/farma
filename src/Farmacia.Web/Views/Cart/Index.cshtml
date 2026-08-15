@@ -1,0 +1,88 @@
+@model List<CartItem>
+@{
+    ViewData["Title"] = "Carrito de compras";
+}
+
+<div class="container py-5">
+    <h1 class="h3 section-title mb-4"><i class="bi bi-cart3"></i> Carrito de compras</h1>
+
+    @if (TempData["Success"] is string success)
+    {
+        <div class="alert alert-success">@success</div>
+    }
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-light border text-center py-5">
+            <i class="bi bi-cart-x fs-2 d-block mb-2"></i>
+            Tu carrito está vacío.
+            <div class="mt-3">
+                <a asp-controller="Products" asp-action="Index" class="btn btn-brand">Ver productos</a>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="table-responsive">
+                    <table class="table cart-table align-middle">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th class="text-center">Precio</th>
+                                <th class="text-center">Cantidad</th>
+                                <th class="text-end">Subtotal</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="d-flex align-items-center gap-3">
+                                        <img src="@(string.IsNullOrEmpty(item.ImageUrl) ? "https://placehold.co/80x80" : item.ImageUrl)" alt="@item.ProductName" style="width:56px;height:56px;object-fit:cover;border-radius:8px;" />
+                                        <span>@item.ProductName</span>
+                                    </td>
+                                    <td class="text-center">$@item.UnitPrice.ToString("0.00")</td>
+                                    <td class="text-center" style="max-width:110px;">
+                                        <form asp-controller="Cart" asp-action="UpdateQuantity" method="post" class="d-flex justify-content-center">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="productId" value="@item.ProductId" />
+                                            <input type="number" name="quantity" value="@item.Quantity" min="1" class="form-control form-control-sm text-center" style="width:70px;" onchange="this.form.submit()" />
+                                        </form>
+                                    </td>
+                                    <td class="text-end fw-semibold">$@item.Subtotal.ToString("0.00")</td>
+                                    <td class="text-end">
+                                        <form asp-controller="Cart" asp-action="Remove" method="post">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="productId" value="@item.ProductId" />
+                                            <button type="submit" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <a asp-controller="Products" asp-action="Index" class="btn btn-outline-brand"><i class="bi bi-arrow-left"></i> Seguir comprando</a>
+            </div>
+            <div class="col-lg-4">
+                <div class="order-summary p-4">
+                    <h5 class="fw-bold mb-3">Resumen del pedido</h5>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Artículos</span>
+                        <span>@(Model.Sum(i => i.Quantity))</span>
+                    </div>
+                    <div class="d-flex justify-content-between fs-5 fw-bold border-top pt-3 mt-3">
+                        <span>Total</span>
+                        <span>$@(Model.Sum(i => i.Subtotal).ToString("0.00"))</span>
+                    </div>
+                    <a asp-controller="Checkout" asp-action="Index" class="btn btn-brand w-100 mt-4">
+                        Proceder al pago <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

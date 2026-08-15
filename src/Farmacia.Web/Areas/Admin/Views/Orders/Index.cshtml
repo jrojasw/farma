@@ -1,0 +1,50 @@
+@model List<Order>
+@{
+    ViewData["Title"] = "Pedidos";
+    var currentStatus = ViewData["CurrentStatus"] as OrderStatus?;
+}
+
+<div class="d-flex gap-2 mb-3 flex-wrap">
+    <a asp-action="Index" class="btn btn-sm @(currentStatus is null ? "btn-brand" : "btn-outline-brand")">Todos</a>
+    @foreach (var status in Enum.GetValues<OrderStatus>())
+    {
+        <a asp-action="Index" asp-route-status="@status" class="btn btn-sm @(currentStatus == status ? "btn-brand" : "btn-outline-brand")">@status</a>
+    }
+</div>
+
+<div class="border rounded-4 p-3">
+    @if (!Model.Any())
+    {
+        <p class="text-muted small mb-0">No hay pedidos.</p>
+    }
+    else
+    {
+        <table class="table table-sm align-middle">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Cliente</th>
+                    <th>Teléfono</th>
+                    <th>Fecha</th>
+                    <th>Total</th>
+                    <th>Estado</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model)
+                {
+                    <tr>
+                        <td>#@order.Id.ToString("D5")</td>
+                        <td>@order.CustomerName</td>
+                        <td>@order.CustomerPhone</td>
+                        <td>@order.CreatedAt.ToLocalTime().ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>$@order.Total.ToString("0.00")</td>
+                        <td><span class="badge bg-secondary-subtle text-secondary-emphasis">@order.Status</span></td>
+                        <td><a asp-action="Details" asp-route-id="@order.Id" class="btn btn-sm btn-outline-brand">Ver</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

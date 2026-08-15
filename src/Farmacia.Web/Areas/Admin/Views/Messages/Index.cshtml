@@ -1,0 +1,39 @@
+@model List<ContactMessage>
+@{
+    ViewData["Title"] = "Mensajes de contacto";
+}
+
+<div class="border rounded-4 p-3">
+    @if (!Model.Any())
+    {
+        <p class="text-muted small mb-0">No hay mensajes.</p>
+    }
+    else
+    {
+        <table class="table table-sm align-middle">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Nombre</th>
+                    <th>Asunto</th>
+                    <th>Fecha</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var message in Model)
+                {
+                    <tr class="@(message.IsRead ? "" : "fw-bold")">
+                        <td>@if (!message.IsRead) { <i class="bi bi-circle-fill text-brand" style="font-size:0.5rem;color:var(--brand-primary);"></i> }</td>
+                        <td>@message.Name</td>
+                        <td>@message.Subject</td>
+                        <td class="fw-normal text-muted small">@message.CreatedAt.ToLocalTime().ToString("dd/MM/yyyy HH:mm")</td>
+                        <td class="text-end">
+                            <a asp-action="Details" asp-route-id="@message.Id" class="btn btn-sm btn-outline-brand">Ver</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

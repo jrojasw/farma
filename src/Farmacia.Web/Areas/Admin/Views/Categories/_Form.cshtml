@@ -1,0 +1,28 @@
+@model Category
+
+<div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
+
+@if (Model.Id != 0)
+{
+    <input type="hidden" asp-for="Id" />
+}
+
+<div class="mb-3">
+    <label asp-for="Name" class="form-label"></label>
+    <input asp-for="Name" class="form-control" />
+    <span asp-validation-for="Name" class="text-danger small"></span>
+</div>
+
+<div class="mb-3">
+    <label asp-for="Description" class="form-label"></label>
+    <textarea asp-for="Description" class="form-control" rows="2"></textarea>
+    <span asp-validation-for="Description" class="text-danger small"></span>
+</div>
+
+<div class="mb-3">
+    <label asp-for="Icon" class="form-label">Icono (clase Bootstrap Icons, ej. bi-capsule)</label>
+    <input asp-for="Icon" class="form-control" placeholder="bi-capsule" />
+</div>
+
+<button type="submit" class="btn btn-brand">Guardar categoría</button>
+<a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>

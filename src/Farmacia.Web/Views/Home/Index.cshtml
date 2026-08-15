@@ -1,0 +1,95 @@
+@model List<Product>
+@{
+    ViewData["Title"] = "Inicio";
+    var categories = ViewData["Categories"] as List<Category> ?? new List<Category>();
+}
+
+<section class="hero">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <span class="hero-badge mb-3"><i class="bi bi-patch-check-fill"></i> Farmacéuticos certificados</span>
+                <h1 class="display-5 mt-3 mb-3">Tu salud, nuestra prioridad</h1>
+                <p class="lead">
+                    Medicamentos, cuidado personal y equipo médico con la mejor atención.
+                    Encuentra todo lo que necesitas y recíbelo en la puerta de tu casa.
+                </p>
+                <div class="d-flex gap-3 mt-4">
+                    <a asp-controller="Products" asp-action="Index" class="btn btn-brand btn-lg">
+                        <i class="bi bi-bag-heart"></i> Ver productos
+                    </a>
+                    <a asp-controller="Contact" asp-action="Index" class="btn btn-outline-brand btn-lg">
+                        Contáctanos
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=900"
+                     class="img-fluid rounded-4 shadow-sm" alt="Farmacia Salud" style="max-height:380px;object-fit:cover;" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="feature-strip py-4">
+    <div class="container">
+        <div class="row text-center g-4">
+            <div class="col-6 col-md-3 feature-item">
+                <i class="bi bi-truck d-block mb-2"></i>
+                <div class="small fw-semibold">Entrega a domicilio</div>
+            </div>
+            <div class="col-6 col-md-3 feature-item">
+                <i class="bi bi-patch-check d-block mb-2"></i>
+                <div class="small fw-semibold">Productos certificados</div>
+            </div>
+            <div class="col-6 col-md-3 feature-item">
+                <i class="bi bi-clock-history d-block mb-2"></i>
+                <div class="small fw-semibold">Atención 7 días</div>
+            </div>
+            <div class="col-6 col-md-3 feature-item">
+                <i class="bi bi-headset d-block mb-2"></i>
+                <div class="small fw-semibold">Asesoría farmacéutica</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Explora por categoría</h2>
+            <p class="section-subtitle">Encuentra rápidamente lo que buscas</p>
+        </div>
+        <div class="row g-3">
+            @foreach (var cat in categories)
+            {
+                <div class="col-6 col-md-4 col-lg-2">
+                    <a class="category-card d-block text-decoration-none" asp-controller="Products" asp-action="Index" asp-route-category="@cat.Slug">
+                        <i class="bi @(string.IsNullOrEmpty(cat.Icon) ? "bi-capsule" : cat.Icon) d-block"></i>
+                        <div class="fw-semibold small">@cat.Name</div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+@if (Model.Any())
+{
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Productos destacados</h2>
+                <p class="section-subtitle">Los favoritos de nuestros clientes</p>
+            </div>
+            <div class="row g-4">
+                @foreach (var product in Model)
+                {
+                    <div class="col-sm-6 col-lg-3">
+                        @await Html.PartialAsync("_ProductCard", product)
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+}

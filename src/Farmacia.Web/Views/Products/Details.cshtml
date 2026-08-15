@@ -1,0 +1,90 @@
+@model Product
+@{
+    ViewData["Title"] = Model.Name;
+    var related = ViewData["Related"] as List<Product> ?? new List<Product>();
+}
+
+<div class="container py-5">
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb small">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Inicio</a></li>
+            <li class="breadcrumb-item"><a asp-controller="Products" asp-action="Index">Productos</a></li>
+            @if (Model.Category is not null)
+            {
+                <li class="breadcrumb-item"><a asp-controller="Products" asp-action="Index" asp-route-category="@Model.Category.Slug">@Model.Category.Name</a></li>
+            }
+            <li class="breadcrumb-item active">@Model.Name</li>
+        </ol>
+    </nav>
+
+    <div class="row g-5">
+        <div class="col-md-5">
+            <div class="product-img-wrap rounded-4">
+                <img src="@(string.IsNullOrEmpty(Model.ImageUrl) ? "https://placehold.co/600x450?text=Farmacia+Salud" : Model.ImageUrl)" alt="@Model.Name" class="img-fluid rounded-4" />
+            </div>
+        </div>
+        <div class="col-md-7">
+            @if (Model.Category is not null)
+            {
+                <div class="text-muted small mb-1">@Model.Category.Name</div>
+            }
+            <h1 class="h3 mb-3">@Model.Name</h1>
+
+            <div class="mb-3 d-flex gap-2">
+                @if (Model.RequiresPrescription)
+                {
+                    <span class="badge badge-rx"><i class="bi bi-file-earmark-medical"></i> Requiere receta médica</span>
+                }
+                @if (Model.InStock)
+                {
+                    <span class="badge bg-success-subtle text-success-emphasis border border-success-subtle">
+                        <i class="bi bi-check-circle"></i> En stock (@Model.Stock disponibles)
+                    </span>
+                }
+                else
+                {
+                    <span class="badge badge-stock-out">Agotado</span>
+                }
+            </div>
+
+            <p class="text-body-secondary">@Model.Description</p>
+
+            <div class="product-price fs-2 mb-4">$@Model.Price.ToString("0.00")</div>
+
+            <form asp-controller="Cart" asp-action="Add" method="post" class="d-flex align-items-center gap-3">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="productId" value="@Model.Id" />
+                <div class="input-group" style="max-width:140px;">
+                    <span class="input-group-text">Cant.</span>
+                    <input type="number" name="quantity" value="1" min="1" max="@Model.Stock" class="form-control" />
+                </div>
+                <button type="submit" class="btn btn-brand btn-lg" @(Model.InStock ? "" : "disabled")>
+                    <i class="bi bi-cart-plus"></i> Agregar al carrito
+                </button>
+            </form>
+
+            @if (Model.RequiresPrescription)
+            {
+                <div class="alert alert-warning mt-4 small mb-0">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    Este producto requiere presentar receta médica vigente al momento de la entrega.
+                </div>
+            }
+        </div>
+    </div>
+
+    @if (related.Any())
+    {
+        <div class="mt-5 pt-4 border-top">
+            <h2 class="h4 section-title mb-4">También te puede interesar</h2>
+            <div class="row g-4">
+                @foreach (var product in related)
+                {
+                    <div class="col-sm-6 col-lg-3">
+                        @await Html.PartialAsync("_ProductCard", product)
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>

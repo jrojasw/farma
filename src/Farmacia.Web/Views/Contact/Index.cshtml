@@ -1,0 +1,72 @@
+@model ContactViewModel
+@{
+    ViewData["Title"] = "Contacto";
+}
+
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="section-title">Contáctanos</h1>
+        <p class="section-subtitle">¿Tienes dudas sobre un producto o necesitas asesoría? Escríbenos.</p>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-lg-7">
+            @if (TempData["Success"] is string success)
+            {
+                <div class="alert alert-success">@success</div>
+            }
+            <form asp-controller="Contact" asp-action="Index" method="post" class="border rounded-4 p-4">
+                @Html.AntiForgeryToken()
+                <div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Name" class="form-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Email" class="form-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Phone" class="form-label"></label>
+                    <input asp-for="Phone" class="form-control" />
+                    <span asp-validation-for="Phone" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Subject" class="form-label"></label>
+                    <input asp-for="Subject" class="form-control" />
+                    <span asp-validation-for="Subject" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Message" class="form-label"></label>
+                    <textarea asp-for="Message" class="form-control" rows="4"></textarea>
+                    <span asp-validation-for="Message" class="text-danger small"></span>
+                </div>
+
+                <button type="submit" class="btn btn-brand btn-lg">Enviar mensaje</button>
+            </form>
+        </div>
+        <div class="col-lg-5">
+            <div class="order-summary p-4 h-100">
+                <h5 class="fw-bold mb-3">Información de contacto</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-3"><i class="bi bi-geo-alt-fill text-brand"></i> Av. Principal 123, Ciudad</li>
+                    <li class="mb-3"><i class="bi bi-telephone-fill"></i> (555) 123-4567</li>
+                    <li class="mb-3"><i class="bi bi-envelope-fill"></i> contacto@farmaciasalud.com</li>
+                    <li class="mb-3"><i class="bi bi-clock-fill"></i> Lun–Sáb 7:00–22:00, Dom 8:00–20:00</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

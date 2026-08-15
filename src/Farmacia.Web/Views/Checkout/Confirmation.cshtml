@@ -1,0 +1,31 @@
+@model Order
+@{
+    ViewData["Title"] = "Pedido confirmado";
+}
+
+<div class="container py-5">
+    <div class="text-center py-5">
+        <i class="bi bi-check-circle-fill text-success" style="font-size:4rem;"></i>
+        <h1 class="h3 mt-3 section-title">¡Gracias por tu pedido, @Model.CustomerName!</h1>
+        <p class="section-subtitle">Tu número de pedido es <strong>#@Model.Id.ToString("D5")</strong>. Te contactaremos al @Model.CustomerPhone para confirmar la entrega.</p>
+
+        <div class="order-summary p-4 mx-auto text-start mt-4" style="max-width:480px;">
+            <h6 class="fw-bold mb-3">Resumen</h6>
+            <ul class="list-unstyled">
+                @foreach (var item in Model.Items)
+                {
+                    <li class="d-flex justify-content-between small mb-2">
+                        <span>@item.ProductName x@item.Quantity</span>
+                        <span>$@item.Subtotal.ToString("0.00")</span>
+                    </li>
+                }
+            </ul>
+            <div class="d-flex justify-content-between fw-bold border-top pt-3 mt-2">
+                <span>Total</span>
+                <span>$@Model.Total.ToString("0.00")</span>
+            </div>
+        </div>
+
+        <a asp-controller="Products" asp-action="Index" class="btn btn-brand mt-4">Seguir comprando</a>
+    </div>
+</div>

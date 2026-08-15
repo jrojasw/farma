@@ -1,0 +1,85 @@
+@model List<Product>
+@{
+    ViewData["Title"] = "Productos";
+    var categories = ViewData["Categories"] as List<Category> ?? new List<Category>();
+    var currentCategory = ViewData["CurrentCategory"] as string;
+    var searchTerm = ViewData["SearchTerm"] as string;
+    var page = (int)(ViewData["Page"] ?? 1);
+    var totalPages = (int)(ViewData["TotalPages"] ?? 1);
+}
+
+<div class="container py-5">
+    <div class="row g-4">
+        <aside class="col-lg-3">
+            <div class="border rounded-4 p-3 mb-4">
+                <h6 class="fw-bold mb-3">Categorías</h6>
+                <ul class="list-unstyled small">
+                    <li class="mb-2">
+                        <a class="@(string.IsNullOrEmpty(currentCategory) ? "fw-bold text-dark" : "")" asp-action="Index">Todos los productos</a>
+                    </li>
+                    @foreach (var cat in categories)
+                    {
+                        <li class="mb-2">
+                            <a class="@(currentCategory == cat.Slug ? "fw-bold text-dark" : "")" asp-action="Index" asp-route-category="@cat.Slug">
+                                <i class="bi @(string.IsNullOrEmpty(cat.Icon) ? "bi-capsule" : cat.Icon)"></i> @cat.Name
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <form asp-action="Index" method="get" class="border rounded-4 p-3">
+                @if (!string.IsNullOrEmpty(currentCategory))
+                {
+                    <input type="hidden" name="category" value="@currentCategory" />
+                }
+                <h6 class="fw-bold mb-3">Buscar</h6>
+                <div class="input-group input-group-sm">
+                    <input type="search" name="q" value="@searchTerm" class="form-control" placeholder="Nombre del producto" />
+                    <button class="btn btn-brand" type="submit"><i class="bi bi-search"></i></button>
+                </div>
+            </form>
+        </aside>
+
+        <div class="col-lg-9">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="h3 mb-0 section-title">
+                    @(categories.FirstOrDefault(c => c.Slug == currentCategory)?.Name ?? "Todos los productos")
+                </h1>
+                <span class="text-muted small">@Model.Count producto(s)</span>
+            </div>
+
+            @if (!Model.Any())
+            {
+                <div class="alert alert-light border text-center py-5">
+                    <i class="bi bi-search fs-3 d-block mb-2"></i>
+                    No encontramos productos con esos criterios.
+                </div>
+            }
+            else
+            {
+                <div class="row g-4">
+                    @foreach (var product in Model)
+                    {
+                        <div class="col-sm-6 col-xl-4">
+                            @await Html.PartialAsync("_ProductCard", product)
+                        </div>
+                    }
+                </div>
+
+                @if (totalPages > 1)
+                {
+                    <nav class="mt-5" aria-label="Paginación de productos">
+                        <ul class="pagination justify-content-center">
+                            @for (var i = 1; i <= totalPages; i++)
+                            {
+                                <li class="page-item @(i == page ? "active" : "")">
+                                    <a class="page-link" asp-action="Index" asp-route-category="@currentCategory" asp-route-q="@searchTerm" asp-route-page="@i">@i</a>
+                                </li>
+                            }
+                        </ul>
+                    </nav>
+                }
+            }
+        </div>
+    </div>
+</div>

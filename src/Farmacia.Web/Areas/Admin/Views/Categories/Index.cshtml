@@ -1,0 +1,45 @@
+@model List<Category>
+@{
+    ViewData["Title"] = "Categorías";
+}
+
+<div class="d-flex justify-content-end mb-3">
+    <a asp-action="Create" class="btn btn-brand btn-sm"><i class="bi bi-plus-lg"></i> Nueva categoría</a>
+</div>
+
+<div class="border rounded-4 p-3">
+    @if (!Model.Any())
+    {
+        <p class="text-muted small mb-0">No hay categorías registradas.</p>
+    }
+    else
+    {
+        <table class="table table-sm align-middle">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Slug</th>
+                    <th>Productos</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var category in Model)
+                {
+                    <tr>
+                        <td><i class="bi @(string.IsNullOrEmpty(category.Icon) ? "bi-capsule" : category.Icon)"></i> @category.Name</td>
+                        <td class="text-muted small">@category.Slug</td>
+                        <td>@category.Products.Count</td>
+                        <td class="text-end">
+                            <a asp-action="Edit" asp-route-id="@category.Id" class="btn btn-sm btn-outline-brand"><i class="bi bi-pencil"></i></a>
+                            <form asp-action="Delete" asp-route-id="@category.Id" method="post" class="d-inline" onsubmit="return confirm('¿Eliminar esta categoría?');">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
