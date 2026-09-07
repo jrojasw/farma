@@ -6,7 +6,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Panel Admin | Farmacia Salud</title>
+    <title>@ViewData["Title"] - Panel Admin | Farmacias Rosita</title>
+    <link rel="icon" type="image/svg+xml" href="~/img/favicon.svg" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -14,9 +15,12 @@
 <body>
     <div class="d-flex">
         <nav class="admin-sidebar p-3" style="width:240px;flex-shrink:0;">
-            <a class="d-flex align-items-center gap-2 text-white text-decoration-none mb-4" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
-                <i class="bi bi-capsule-pill fs-4"></i>
-                <span class="fw-bold">Farmacia Salud</span>
+            <a class="navbar-brand-farmacia text-decoration-none mb-4" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
+                <span class="brand-cross"><i class="bi bi-plus-lg"></i></span>
+                <span class="brand-lockup">
+                    <span class="brand-eyebrow" style="color:#f0d5e6;">Farmacias</span>
+                    <span class="brand-word" style="color:#ffffff;font-size:1.2rem;">Rosita</span>
+                </span>
             </a>
             <ul class="nav nav-pills flex-column gap-1">
                 <li class="nav-item">

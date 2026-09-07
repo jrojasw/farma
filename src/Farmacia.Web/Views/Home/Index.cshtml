@@ -33,7 +33,7 @@
                         </div>
                         <div class="col-lg-6 text-center">
                             <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=900"
-                                 class="img-fluid rounded-4 shadow-sm" alt="Farmacia Salud" style="max-height:380px;object-fit:cover;" />
+                                 class="img-fluid rounded-4 shadow-sm" alt="Farmacias Rosita" style="max-height:380px;object-fit:cover;" />
                         </div>
                     </div>
                 </div>
@@ -104,7 +104,7 @@
     <div class="container">
         <div class="row g-3">
             <div class="col-md-4">
-                <a class="promo-banner promo-banner-green text-decoration-none" asp-controller="Products" asp-action="Index" asp-route-category="medicamentos">
+                <a class="promo-banner promo-banner-pink text-decoration-none" asp-controller="Products" asp-action="Index" asp-route-category="medicamentos">
                     <i class="bi bi-capsule"></i>
                     <div>
                         <div class="promo-banner-title">Medicamentos</div>
@@ -114,7 +114,7 @@
                 </a>
             </div>
             <div class="col-md-4">
-                <a class="promo-banner promo-banner-yellow text-decoration-none" asp-controller="Products" asp-action="Index" asp-route-category="cuidado-bebe">
+                <a class="promo-banner promo-banner-green text-decoration-none" asp-controller="Products" asp-action="Index" asp-route-category="cuidado-bebe">
                     <i class="bi bi-emoji-smile"></i>
                     <div>
                         <div class="promo-banner-title">Cuidado del Bebé</div>
@@ -259,7 +259,7 @@
                     @Html.AntiForgeryToken()
                     <input type="hidden" name="returnUrl" value="@Url.Action("Index", "Home")#suscribete" />
                     <input type="email" name="email" required class="form-control form-control-lg" placeholder="tu@correo.com" aria-label="Correo electrónico" />
-                    <button type="submit" class="btn btn-brand-yellow btn-lg text-nowrap">Suscribirme</button>
+                    <button type="submit" class="btn btn-brand-green btn-lg text-nowrap">Suscribirme</button>
                 </form>
             </div>
         </div>

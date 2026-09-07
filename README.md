@@ -1,4 +1,4 @@
-# Farmacia Salud
+# Farmacias Rosita
 
 Sitio web para una farmacia construido con **ASP.NET Core 8 MVC** (C#), **Entity Framework Core** y **SQLite**. Incluye tienda con catálogo de productos, carrito de compras, checkout, formulario de contacto y un **panel de administración autoadministrable** para gestionar productos, categorías, pedidos y mensajes sin tocar código.
 
