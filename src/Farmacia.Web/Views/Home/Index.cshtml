@@ -12,78 +12,60 @@
     </div>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <section class="hero">
+            <section class="hero" style="background-image:url('https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=1600&h=700&fit=crop&auto=format');">
                 <div class="container">
-                    <div class="row align-items-center g-5">
-                        <div class="col-lg-6">
-                            <span class="hero-badge mb-3"><i class="bi bi-patch-check-fill"></i> Farmacéuticos certificados</span>
-                            <h1 class="display-5 mt-3 mb-3">Tu salud, nuestra prioridad</h1>
-                            <p class="lead">
-                                Medicamentos, cuidado personal y equipo médico con la mejor atención.
-                                Encuentra todo lo que necesitas y recíbelo en la puerta de tu casa.
-                            </p>
-                            <div class="d-flex gap-3 mt-4">
-                                <a asp-controller="Products" asp-action="Index" class="btn btn-brand btn-lg">
-                                    <i class="bi bi-bag-heart"></i> Ver productos
-                                </a>
-                                <a asp-controller="Contact" asp-action="Index" class="btn btn-outline-brand btn-lg">
-                                    Contáctanos
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 text-center">
-                            <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=900"
-                                 class="img-fluid rounded-4 shadow-sm" alt="Farmacias Rosita" style="max-height:380px;object-fit:cover;" />
+                    <div class="hero-slide-content">
+                        <span class="hero-badge mb-3"><i class="bi bi-patch-check-fill"></i> Farmacéuticos certificados</span>
+                        <h1 class="display-5 mt-3 mb-3">Tu salud, nuestra prioridad</h1>
+                        <p class="lead">
+                            Medicamentos, cuidado personal y equipo médico con la mejor atención.
+                            Encuentra todo lo que necesitas y recíbelo en la puerta de tu casa.
+                        </p>
+                        <div class="d-flex gap-3 mt-4">
+                            <a asp-controller="Products" asp-action="Index" class="btn btn-brand btn-lg">
+                                <i class="bi bi-bag-heart"></i> Ver productos
+                            </a>
+                            <a asp-controller="Contact" asp-action="Index" class="btn btn-outline-light btn-lg">
+                                Contáctanos
+                            </a>
                         </div>
                     </div>
                 </div>
             </section>
         </div>
         <div class="carousel-item">
-            <section class="hero hero-alt-1">
+            <section class="hero" style="background-image:url('https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=1600&h=700&fit=crop&auto=format');">
                 <div class="container">
-                    <div class="row align-items-center g-5">
-                        <div class="col-lg-6">
-                            <span class="hero-badge mb-3"><i class="bi bi-capsule-pill"></i> Vitaminas y Suplementos</span>
-                            <h1 class="display-5 mt-3 mb-3">Refuerza tu bienestar cada día</h1>
-                            <p class="lead">
-                                Vitaminas, minerales y suplementos nutricionales seleccionados
-                                para acompañar tu rutina de salud.
-                            </p>
-                            <div class="d-flex gap-3 mt-4">
-                                <a asp-controller="Products" asp-action="Index" asp-route-category="vitaminas-suplementos" class="btn btn-brand btn-lg">
-                                    Ver vitaminas y suplementos
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 text-center">
-                            <img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=900"
-                                 class="img-fluid rounded-4 shadow-sm" alt="Vitaminas y suplementos" style="max-height:380px;object-fit:cover;" />
+                    <div class="hero-slide-content">
+                        <span class="hero-badge mb-3"><i class="bi bi-capsule-pill"></i> Vitaminas y Suplementos</span>
+                        <h1 class="display-5 mt-3 mb-3">Refuerza tu bienestar cada día</h1>
+                        <p class="lead">
+                            Vitaminas, minerales y suplementos nutricionales seleccionados
+                            para acompañar tu rutina de salud.
+                        </p>
+                        <div class="d-flex gap-3 mt-4">
+                            <a asp-controller="Products" asp-action="Index" asp-route-category="vitaminas-suplementos" class="btn btn-brand btn-lg">
+                                Ver vitaminas y suplementos
+                            </a>
                         </div>
                     </div>
                 </div>
             </section>
         </div>
         <div class="carousel-item">
-            <section class="hero hero-alt-2">
+            <section class="hero" style="background-image:url('https://images.unsplash.com/photo-1616671276441-2f2c277b8bf6?w=1600&h=700&fit=crop&auto=format');">
                 <div class="container">
-                    <div class="row align-items-center g-5">
-                        <div class="col-lg-6">
-                            <span class="hero-badge mb-3"><i class="bi bi-truck"></i> Entrega a domicilio</span>
-                            <h1 class="display-5 mt-3 mb-3">Pide en línea, recibe en tu puerta</h1>
-                            <p class="lead">
-                                Haz tu pedido desde el catálogo y coordina la entrega directamente
-                                con nuestro equipo — sin filas ni esperas.
-                            </p>
-                            <div class="d-flex gap-3 mt-4">
-                                <a asp-controller="Products" asp-action="Index" class="btn btn-brand btn-lg">
-                                    Empezar a comprar
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 text-center">
-                            <img src="https://images.unsplash.com/photo-1616671276441-2f2c277b8bf6?w=900"
-                                 class="img-fluid rounded-4 shadow-sm" alt="Entrega a domicilio" style="max-height:380px;object-fit:cover;" />
+                    <div class="hero-slide-content">
+                        <span class="hero-badge mb-3"><i class="bi bi-truck"></i> Entrega a domicilio</span>
+                        <h1 class="display-5 mt-3 mb-3">Pide en línea, recibe en tu puerta</h1>
+                        <p class="lead">
+                            Haz tu pedido desde el catálogo y coordina la entrega directamente
+                            con nuestro equipo — sin filas ni esperas.
+                        </p>
+                        <div class="d-flex gap-3 mt-4">
+                            <a asp-controller="Products" asp-action="Index" class="btn btn-brand btn-lg">
+                                Empezar a comprar
+                            </a>
                         </div>
                     </div>
                 </div>

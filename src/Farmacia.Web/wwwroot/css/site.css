@@ -191,14 +191,38 @@ a:hover {
 }
 
 .hero {
-  background: linear-gradient(120deg, var(--brand-primary-light) 0%, #ffffff 55%, var(--brand-green-light) 130%);
-  padding: 4rem 0;
+  position: relative;
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
 }
-.hero-alt-1 {
-  background: linear-gradient(120deg, var(--brand-green-light) 0%, #ffffff 55%, var(--brand-primary-light) 130%);
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(15, 8, 12, 0.82) 0%, rgba(15, 8, 12, 0.55) 45%, rgba(15, 8, 12, 0.15) 75%);
 }
-.hero-alt-2 {
-  background: linear-gradient(120deg, #eaf2fb 0%, #ffffff 55%, var(--brand-primary-light) 130%);
+.hero .container {
+  position: relative;
+  z-index: 1;
+}
+.hero-slide-content {
+  max-width: 560px;
+}
+.hero h1 {
+  font-weight: 800;
+  color: #ffffff;
+}
+.hero .lead {
+  color: rgba(255, 255, 255, 0.9);
+}
+@media (max-width: 767.98px) {
+  .hero {
+    min-height: 460px;
+  }
 }
 
 /* Promo banners */
@@ -267,28 +291,21 @@ a:hover {
   justify-content: center;
   font-size: 1.2rem;
 }
-.hero h1 {
-  font-weight: 800;
-  color: var(--ink);
-}
-.hero .lead {
-  color: var(--ink-soft);
-}
-
 .hero-badge {
-  background-color: var(--brand-green-light);
-  border: 1px solid var(--brand-green);
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 999px;
   padding: 0.35rem 0.9rem;
   font-size: 0.85rem;
-  color: var(--brand-green-dark);
+  color: #ffffff;
   font-weight: 600;
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
 }
 .hero-badge .bi {
-  color: var(--brand-green-dark);
+  color: #ffffff;
 }
 
 /* Category cards */
